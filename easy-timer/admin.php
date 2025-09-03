@@ -30,7 +30,7 @@ $links = array(
 '#date' => __('Display the time or the date', 'easy-timer'),
 '#screen-options-wrap' => __('Hide this box', 'easy-timer')); ?>
 <p><a target="_blank" href="https://www.kleor.com/easy-timer/"><?php echo $links['']; ?></a><span id="easy-timer-screen-options-link"></span></p>
-<script>document.getElementById("easy-timer-screen-options-link").innerHTML = ' | <a style="color: #606060;" href="#screen-options-wrap" onclick="document.getElementById(\'show-settings-link\').click(); document.getElementById(\'easy-timer-hide\').click();"><?php echo $links['#screen-options-wrap']; ?></a>';</script>
+<script>if (!document.body.classList.contains("block-editor-page")) { document.getElementById("easy-timer-screen-options-link").innerHTML = ' | <a style="color: #606060;" href="#screen-options-wrap" onclick="document.getElementById(\'show-settings-link\').click(); document.getElementById(\'easy-timer-hide\').click();"><?php echo $links['#screen-options-wrap']; ?></a>'; }</script>
 <ul>
 <?php foreach (array('', '#screen-options-wrap') as $url) { unset($links[$url]); }
 foreach ($links as $url => $text) {
