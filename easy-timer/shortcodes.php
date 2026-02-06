@@ -41,6 +41,9 @@ function easy_timer_js() { echo '<script>'.str_replace("\n", "", file_get_conten
 function easy_timer_lang_js() { include easy_timer_path('includes/lang-js.php'); }
 
 
+function easy_timer_mktime($hr, $min, $sec, $mon = false, $day = false, $year = false) { include easy_timer_path('includes/mktime.php'); return (int) $ts; }
+
+
 function easy_timer_month($atts) { include easy_timer_path('includes/month.php'); return $month; }
 
 

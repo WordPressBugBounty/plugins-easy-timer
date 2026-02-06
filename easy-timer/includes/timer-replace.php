@@ -79,7 +79,7 @@ $y = $Y[2] - $Y[1];
 $m1 = 12*($Y[4] - $Y[1]) + $M[3] - $M[1];
 $m2 = $M[3] - $M[2];
 if ($m2 < 0) { $m2 = $m2 + 12; }
-for ($i = 1; $i <= 4; $i++) { $times[$i] = adodb_mktime(0, 0, 0, $M[$i], $D[$i], $Y[$i]); }
+for ($i = 1; $i <= 4; $i++) { $times[$i] = easy_timer_mktime(0, 0, 0, $M[$i], $D[$i], $Y[$i]); }
 $d1 = floor(($times[4] - $times[1])/86400);
 $w1 = floor($d1/7); $dw1 = $d1 - 7*$w1;
 $d2 = floor(($times[4] - $times[2])/86400);

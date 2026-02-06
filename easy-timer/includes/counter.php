@@ -1,5 +1,4 @@
 <?php if (!defined('ABSPATH')) { exit(); }
-if (!function_exists('adodb_mktime')) { include_once easy_timer_path('libraries/adodb-time.php'); }
 $atts = array_map('kleor_do_shortcode_in_attribute', (array) $atts);
 extract(shortcode_atts(array('date' => '', 'delimiter' => '', 'filter' => '', 'offset' => '', 'origin' => '', 'period' => '', 'way' => ''), $atts));
 global $blog_id, $post;
@@ -32,7 +31,7 @@ if ($P > 0) {
 if ($delimiter == '[after]') { $last_date = $date[$n - 1]; } else { $last_date = $date[1]; }
 $last_date = preg_split('#[^0-9]#', $last_date, 0, PREG_SPLIT_NO_EMPTY);
 for ($j = 0; $j < 6; $j++) { $last_date[$j] = (int) (isset($last_date[$j]) ? $last_date[$j] : 0); }
-$last_T = adodb_mktime($last_date[3], $last_date[4], $last_date[5], $last_date[1], $last_date[2], $last_date[0]) - easy_timer_extract_offset($offset);
+$last_T = easy_timer_mktime($last_date[3], $last_date[4], $last_date[5], $last_date[1], $last_date[2], $last_date[0]) - easy_timer_extract_offset($offset);
 if ($delimiter == '[after]') { $last_S = $time - $last_T; } else { $last_S = $last_T - $time; }
 if ($last_S > 0) { $r = ceil($last_S/$P); } } }
 
@@ -61,7 +60,7 @@ for ($i = 1; $i < $n; $i++) {
 	case 0: case 1: $S[$i] = $date[$i][0]; $T[$i] = $time - $S[$i]; break;
 	case 2: $S[$i] = 60*$date[$i][0] + $date[$i][1]; $T[$i] = $time - $S[$i]; break;
 	default:
-	$T[$i] = adodb_mktime($date[$i][3], $date[$i][4], $date[$i][5], $date[$i][1], $date[$i][2], $date[$i][0]) - easy_timer_extract_offset($offset);
+	$T[$i] = easy_timer_mktime($date[$i][3], $date[$i][4], $date[$i][5], $date[$i][1], $date[$i][2], $date[$i][0]) - easy_timer_extract_offset($offset);
 	foreach (array('P', 'r') as $variable) { if (!isset($$variable)) { $$variable = 0; } }
 	if ($delimiter == '[after]') { $T[$i] = $T[$i] + $r*$P; } else { $T[$i] = $T[$i] - $r*$P; }
 	$S[$i] = $time - $T[$i]; } }
